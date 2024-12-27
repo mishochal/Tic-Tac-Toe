@@ -10,6 +10,7 @@ body {
 }
 
 .container {
+    position: relative;
     width: 400px;
     padding: 20px;
     margin: 50px auto;
@@ -68,4 +69,19 @@ body {
 
 .play-again:hover {
     background-color: rgb(125, 230, 195);
+}
+
+.volume-btn {
+    width: 25px;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.off {
+    opacity: 0.3;
+    display: none;
 }

@@ -1,6 +1,9 @@
 const cells = document.querySelectorAll(".cell");
 const winner = document.getElementById("winner");
 
+const muteBtn = document.querySelector(".volume-btn.on");
+const unmuteBtn = document.querySelector(".volume-btn.off");
+
 const players =
     [
         {
@@ -28,6 +31,7 @@ const winCons =
     ];
 
 let player = players[0];
+let winningAudo = new Audio("./audios/win.wav");
 
 
 const makeMove = (index) => {
@@ -44,7 +48,7 @@ const checkGame = () => {
         return winCon.every((cellIndex) => cells[cellIndex].innerHTML === player.symbol);
     })
     if (won) {
-        new Audio("./audios/win.wav").play();
+        winningAudo.play();
         cells.forEach((cell) => cell.style.pointerEvents = "none");
         winner.innerHTML = "Winner: " + player.player;
         winner.style.opacity = "1";
@@ -73,4 +77,20 @@ const playAgain = () => {
     }
     player = players[0];
     winner.style.opacity = "0";
+}
+
+const mute = () => {
+    muteBtn.style.display = "none"
+    unmuteBtn.style.display = "block";
+
+    winningAudo.volume = 0;
+    players.forEach(player => player.audio.volume = 0);
+}
+
+const unmute = () => {
+    muteBtn.style.display = "block"
+    unmuteBtn.style.display = "none";
+
+    winningAudo.volume = 1;
+    players.forEach(player => player.audio.volume = 1);
 }
